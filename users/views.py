@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.contrib.auth import logout
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView
 from django.http import HttpResponseRedirect
@@ -11,7 +12,7 @@ from users.forms import RegistrationForm
 
 def home(request):
     if request.user.is_authenticated:
-        return render(request, 'users/home.html')
+        return HttpResponseRedirect(reverse('manager:main'))
 
     return render(request, 'users/login.html')
 
@@ -19,6 +20,11 @@ def home(request):
 class UserLogin(LoginView):
     template_name = 'users/login.html'
     redirect_authenticated_user = True
+
+
+def logout_user(request):
+    logout(request)
+    return HttpResponseRedirect(reverse('home'))
 
 
 class UserRegistration(View):
