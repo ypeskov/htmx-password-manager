@@ -1,0 +1,24 @@
+<div class="container mx-auto px-4">
+  <button type="button"
+          hx-get="{% url 'manager:secret_buttons' %}"
+          hx-target="#main-content"
+          hx-swap="innerHTML"
+          class="bg-blue-500 mb-4 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+  >Back</button>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    {% for login in object_list %}
+      <div hx-get="{% url 'manager:detail_login' login.pk %}"
+           hx-target="#main-content"
+           hx-swap="innerHTML"
+           class="border p-4 rounded shadow">
+        <h2 class="text-lg font-semibold">{{ login.title }}</h2>
+        <p><strong>Login:</strong> {{ login.login }}</p>
+        <p><strong>URL:</strong> <a href="{{ login.url }}" class="text-blue-500 hover:underline">{{ login.url }}</a></p>
+        <p>{{ login.notes }}</p>
+      </div>
+    {% empty %}
+      <p>No Logins.</p>
+    {% endfor %}
+  </div>
+</div>
