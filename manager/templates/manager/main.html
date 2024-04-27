@@ -1,0 +1,48 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% block page_title %}
+  Items
+{% endblock %}
+
+{% block main %}
+  <div class="p-4">
+    <div class="flex justify-between items-center mb-6">
+      <div class="flex items-center">
+        <a href=""
+           hx-get="{% url 'manager:add_login' %}"
+           hx-swap="innerHTML"
+           hx-trigger="click"
+           hx-target="#main-content"
+           class="flex items-center px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white font-bold rounded">
+          <img src="{% static 'images/icons/new-icon.svg' %}"
+               alt="New Icon"
+               class="h-6 w-6 mr-2">
+          New
+        </a>
+      </div>
+
+      <div class="flex items-center">
+        <div class="flex items-center mr-4">
+          <a href="#" class="flex items-center px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white font-bold rounded">
+            <img src="{% static 'images/icons/settings-icon.svg' %}" alt="Settings Icon" class="h-6 w-6">
+          </a>
+        </div>
+        <div class="flex items-center">
+          <a href="{% url 'users:logout' %}"
+             class="flex items-center px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white font-bold rounded">
+            <img src="{% static 'images/icons/exit-icon.svg' %}" alt="Settings Icon" class="h-6 w-6">
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div id="main-content" class="flex justify-between items-center mb-6">
+      {%  include 'manager/secret-buttons.html' %}
+    </div>
+
+
+  </div>
+
+{% endblock %}
