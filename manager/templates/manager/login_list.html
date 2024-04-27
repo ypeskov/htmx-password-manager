@@ -8,7 +8,10 @@
 
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
     {% for login in object_list %}
-      <div class="border p-4 rounded shadow">
+      <div hx-get="{% url 'manager:detail_login' login.pk %}"
+           hx-target="#main-content"
+           hx-swap="innerHTML"
+           class="border p-4 rounded shadow">
         <h2 class="text-lg font-semibold">{{ login.title }}</h2>
         <p><strong>Login:</strong> {{ login.login }}</p>
         <p><strong>URL:</strong> <a href="{{ login.url }}" class="text-blue-500 hover:underline">{{ login.url }}</a></p>
