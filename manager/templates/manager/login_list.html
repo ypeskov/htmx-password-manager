@@ -11,7 +11,7 @@
       <div hx-get="{% url 'manager:detail_login' login.pk %}"
            hx-target="#main-content"
            hx-swap="innerHTML"
-           class="border p-4 rounded shadow">
+           class="border p-4 rounded shadow cursor-pointer transition duration-300 ease-in-out hover:bg-blue-100">
         <h2 class="text-lg font-semibold">{{ login.title }}</h2>
         <p><strong>Login:</strong> {{ login.login }}</p>
         <p><strong>URL:</strong> <a href="{{ login.url }}" class="text-blue-500 hover:underline">{{ login.url }}</a></p>
