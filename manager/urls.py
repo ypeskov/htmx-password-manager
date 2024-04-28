@@ -1,7 +1,8 @@
 from django.urls import path
 
 
-from manager.views import main, LoginCreateView,show_secret_buttons, LoginListView, LoginDetailView, LoginUpdateView
+from manager.views import main, LoginCreateView,show_secret_buttons, LoginListView, \
+    LoginDetailView, LoginUpdateView, LoginDeleteView
 
 app_name = 'manager'
 
@@ -10,6 +11,7 @@ urlpatterns = [
     path('edit-login/<int:pk>/', LoginUpdateView.as_view(), name='edit_login'),
     path('list-logins/', LoginListView.as_view(), name='list_logins'),
     path('detail-login/<int:pk>/', LoginDetailView.as_view(), name='detail_login'),
+    path('delete-login/<int:pk>/', LoginDeleteView.as_view(), name='delete_login'),
     path('secret-buttons/', show_secret_buttons, name='secret_buttons'),
     path('', main, name='main'),
 ]

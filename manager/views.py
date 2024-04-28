@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy, reverse
 from django.utils.decorators import method_decorator
 from django.views.decorators.http import require_GET
-from django.views.generic import CreateView, ListView, DetailView, UpdateView
+from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
 
 from manager.forms import LoginForm
 from manager.models import Login
@@ -65,3 +65,8 @@ class LoginDetailView(DetailView):
 
     def get_queryset(self):
         return Login.objects.filter(user=self.request.user)
+
+
+class LoginDeleteView(DeleteView):
+    model = Login
+    success_url = reverse_lazy('manager:list_logins')
