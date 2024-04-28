@@ -1,18 +1,16 @@
-FROM python:3.12-slim
-
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    build-essential \
-    libpq-dev \
-    && rm -rf /var/lib/apt/lists/*
-
-RUN pip install poetry
+FROM --platform=linux/amd64 python:3.12-alpine3.19
 
 WORKDIR /app
 
 COPY poetry.lock pyproject.toml /app/
 
-RUN poetry config virtualenvs.create false \
-    && poetry install --no-dev --no-interaction --no-ansi
+RUN apk update && \
+    apk add --no-cache libffi-dev gcc python3-dev libc-dev linux-headers && \
+    pip install --upgrade pip && \
+    pip install poetry && \
+    poetry config virtualenvs.create false && \
+    poetry install --no-dev --no-interaction --no-ansi && \
+    apk del libffi-dev gcc python3-dev libc-dev linux-headers
 
 COPY . /app
 
