@@ -10,11 +10,8 @@
   <div class="p-4">
     <div class="flex justify-between items-center mb-6">
       <div class="flex items-center">
-        <a href=""
-           hx-get="{% url 'manager:add_login' %}"
-           hx-swap="innerHTML"
-           hx-trigger="click"
-           hx-target="#main-content"
+        <a href="javascript:void(0);"
+           onclick="toggleVisibility()"
            class="flex items-center px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white font-bold rounded">
           &#x2795;
           New
@@ -34,6 +31,22 @@
           </a>
         </div>
       </div>
+    </div>
+
+    <div id="new-item-select" class="flex hidden">
+      <ul>
+        <li><a href="javascript:void(0);"
+               onclick="toggleVisibility()"
+               hx-get="{% url 'manager:add_login' %}"
+               hx-swap="innerHTML"
+               hx-trigger="click"
+               hx-target="#main-content"
+               class="flex items-center px-4 py-2 bg-green-500 hover:bg-green-700 text-white font-bold rounded">
+          Login Item
+        </a>
+        </li>
+        <li>Credit Card</li>
+      </ul>
     </div>
 
     <div id="main-content" class="flex justify-between items-center mb-6">
