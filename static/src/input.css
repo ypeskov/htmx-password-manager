@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.hidden-selector {
+  opacity: 0;
+  overflow: hidden;
+  display: none;
+}
+
+.visible-selector {
+  opacity: 1;
+}

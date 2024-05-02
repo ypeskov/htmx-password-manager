@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'manager',
     'users',
     'compressor',
+    'creditcards',
 ]
 
 MIDDLEWARE = [
