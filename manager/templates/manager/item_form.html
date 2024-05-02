@@ -1,7 +1,7 @@
 <div class="max-w-md w-full bg-white p-8 border border-gray-300 mx-auto mt-10">
   <button type="button"
       {% if object.id %}
-          hx-get="{% url 'manager:detail_login' object.id %}"
+          hx-get="{{ back_url }}"
       {% else %}
           hx-get="{% url 'manager:secret_buttons' %}"
       {% endif %}
@@ -11,12 +11,12 @@
   >Back
   </button>
 
-  <h1 class="text-xl font-bold mb-6">Add Login</h1>
+  <h1 class="text-xl font-bold mb-6">{{ form_title }}</h1>
   <form method="post"
       {% if object.id is not None %}
-        hx-post="{% url 'manager:edit_login' object.id %}"
+        hx-post="{% url update_url_name object.id %}"
       {% else %}
-        hx-post="{% url 'manager:add_login' %}"
+        hx-post="{% url create_url_name %}"
       {% endif %}
         hx-swap="innerHTML"
         hx-target="#main-content">
@@ -27,9 +27,16 @@
           {{ field.label }}
         </label>
         {{ field }}
-        {{ field.errors }}
+        {% if field.errors %}
+          <div class="mt-1">
+            {% for error in field.errors %}
+              <p class="text-sm text-red-500">{{ error }}</p>
+            {% endfor %}
+          </div>
+        {% endif %}
       </div>
     {% endfor %}
+
     <div class="flex items-center justify-between">
       <button type="submit"
               class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">

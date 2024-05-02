@@ -6,7 +6,8 @@ class CreditCard(models.Model):
     holder_name = models.CharField(max_length=255, null=True, blank=True)
     brand = models.CharField(max_length=255, null=True, blank=True)
     number = models.CharField(max_length=16, null=True, blank=True)
-    expiration_date = models.DateField(null=True, blank=True)
+    expiration_month = models.IntegerField(choices=[(i, i) for i in range(1, 13)])
+    expiration_year = models.IntegerField()
     cvv = models.CharField(max_length=3, null=True, blank=True)
     pin = models.CharField(max_length=10, null=True, blank=True)
     notes = models.TextField(null=True, blank=True)
@@ -16,4 +17,5 @@ class CreditCard(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f'{self.title} - {self.expiration_date}'
+        last_four = self.number[-4:]
+        return f'{self.title} - {self.holder_name} - {self.brand} - {last_four}'

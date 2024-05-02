@@ -1,0 +1,26 @@
+{% load cc_filters %}
+
+<div class="container mx-auto px-4">
+  <button type="button"
+          hx-get="{% url 'manager:secret_buttons' %}"
+          hx-target="#main-content"
+          hx-swap="innerHTML"
+          class="bg-blue-500 mb-4 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+  >Back</button>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    {% for cc in object_list %}
+      <div hx-get="{% url 'creditcards:detail_creditcard' cc.pk %}"
+           hx-target="#main-content"
+           hx-swap="innerHTML"
+           class="border p-4 rounded shadow cursor-pointer transition duration-300 ease-in-out hover:bg-blue-100">
+        <h2 class="text-lg font-semibold">{{ cc.title }}</h2>
+        <p><strong>Holder Name:</strong> {{ cc.holder_name }}</p>
+        <p><strong>Last 4 digits:</strong> **** {{ cc.number|last_four }}</p>
+        <p>{{ cc.notes }}</p>
+      </div>
+    {% empty %}
+      <p>No Logins.</p>
+    {% endfor %}
+  </div>
+</div>

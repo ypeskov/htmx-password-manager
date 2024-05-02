@@ -33,7 +33,7 @@
       </div>
     </div>
 
-    <div id="new-item-select" class="flex hidden">
+    <div id="new-item-select" class="flex hidden-selector">
       <ul>
         <li><a href="javascript:void(0);"
                onclick="toggleVisibility()"
@@ -41,13 +41,21 @@
                hx-swap="innerHTML"
                hx-trigger="click"
                hx-target="#main-content"
-               class="flex items-center px-4 py-2 bg-green-500 hover:bg-green-700 text-white font-bold rounded">
+               class="flex items-center px-4 py-2 bg-green-500 hover:bg-green-700 text-white font-bold mb-4 rounded">
           Login Item
-        </a>
-        </li>
-        <li>Credit Card</li>
+        </a></li>
+        <li><a href="javascript:void(0);"
+               onclick="toggleVisibility()"
+               hx-get="{% url 'creditcards:add_creditcard' %}"
+               hx-swap="innerHTML"
+               hx-trigger="click"
+               hx-target="#main-content"
+               class="flex items-center px-4 py-2 bg-green-500 hover:bg-green-700 text-white font-bold mb-4 rounded">
+          Credit Card Item
+        </a></li>
       </ul>
     </div>
+
 
     <div id="main-content" class="flex justify-between items-center mb-6">
       {% include 'manager/secret-buttons.html' %}
