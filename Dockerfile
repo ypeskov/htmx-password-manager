@@ -2,6 +2,9 @@ FROM --platform=linux/amd64 python:3.12-alpine3.19
 
 WORKDIR /app
 
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
 COPY poetry.lock pyproject.toml /app/
 
 RUN apk update && \
